@@ -10,14 +10,7 @@
 #include <dt-bindings/zmk/keys.h>
 
 / {
-    combos {
-        compatible = "zmk,combos";
-
-        multi_media_layer {
-            bindings = <&mo 3>;
-            key-positions = <52 55>;
-        };
-    };
+    combos { compatible = "zmk,combos"; };
 
     behaviors {
         ss_hs_modmorph: ss_hs_modmorph {
@@ -46,6 +39,27 @@
             require-prior-idle-ms = <125>;
             bindings = <&kp>, <&kp>;
         };
+
+        bht_win_switch_language: bht_win_switch_language {
+            compatible = "zmk,behavior-hold-tap";
+            label = "BHT_WIN_SWITCH_LANGUAGE";
+            bindings = <&kp>, <&macro_win_switch_language>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            quick-tap-ms = <125>;
+            require-prior-idle-ms = <125>;
+            flavor = "tap-preferred";
+        };
+    };
+
+    macros {
+        macro_win_switch_language: macro_win_switch_language {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LSHIFT &kp LCTRL>;
+            label = "MACRO_WIN_SWITCH_LANGUAGE";
+        };
     };
 
     keymap {
@@ -60,11 +74,11 @@
             //                     | ALT  | GUI  | LOWER|  SPACE |  | ENTER | RAISE| BSPC  | GUI   |
 
             bindings = <
-&kp ESC    &kp N1  &kp N2  &kp N3    &kp N4    &kp N5                              &kp N6           &kp N7      &kp N8     &kp N9   &kp N0    &kp EQUAL
-&kp TAB    &kp Q   &kp W   &kp E     &kp R     &kp T                               &kp Y            &kp U       &kp I      &kp O    &kp P     &kp MINUS
-&kp LCTRL  &kp A   &kp S   &kp D     &kp F     &kp G                               &kp H            &kp J       &kp K      &kp L    &kp SEMI  &kp SQT
-&kp LSHFT  &kp Z   &kp X   &kp C     &kp V     &kp B        &kp LBKT     &kp RBKT  &kp N            &kp M       &kp COMMA  &kp DOT  &kp FSLH  &kp BACKSLASH
-                           &kp LALT  &kp LGUI  &lt 1 GRAVE  &kp SPACE    &kp RET   &lt 2 BACKSPACE  &kp DELETE  &kp RGUI
+&kp ESC    &kp N1  &kp N2  &kp N3                           &kp N4    &kp N5                              &kp N6        &kp N7         &kp N8     &kp N9   &kp N0    &kp EQUAL
+&kp TAB    &kp Q   &kp W   &kp E                            &kp R     &kp T                               &kp Y         &kp U          &kp I      &kp O    &kp P     &kp MINUS
+&kp LCTRL  &kp A   &kp S   &kp D                            &kp F     &kp G                               &kp H         &kp J          &kp K      &kp L    &kp SEMI  &kp SQT
+&kp LSHFT  &kp Z   &kp X   &kp C                            &kp V     &kp B        &kp LBKT     &kp RBKT  &kp N         &kp M          &kp COMMA  &kp DOT  &kp FSLH  &kp BACKSLASH
+                           &bht_win_switch_language LALT 0  &kp LGUI  &lt 1 GRAVE  &kp SPACE    &kp RET   &lt 2 DELETE  &kp BACKSPACE  &kp RGUI
             >;
         };
 
@@ -110,6 +124,15 @@
 &trans      &trans        &trans        &trans        &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans  &trans
                                         &trans        &trans  &trans  &trans    &trans  &trans  &trans  &trans
             >;
+        };
+    };
+
+    conditional_layers {
+        compatible = "zmk,conditional-layers";
+
+        multi_media_layer {
+            if-layers = <1 2>;
+            then-layer = <3>;
         };
     };
 };

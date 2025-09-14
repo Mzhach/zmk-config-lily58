@@ -3,4 +3,5 @@
 
 [Layout image generator](https://keymap-drawer.streamlit.app/)
 
-![](/docs/keymap.svg)
+![](/docs/en_keymap.svg)
+![](/docs/ru_keymap.svg)

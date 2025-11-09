@@ -72,8 +72,6 @@
                 <&macro_tap>,
                 <&kp LEFT_SHIFT>,
                 <&macro_release>,
-                <&kp LEFT_ALT>,
-                <&macro_tap>,
                 <&kp LEFT_ALT>;
 
             label = "WIN_SWITCH_LANGUAGE";

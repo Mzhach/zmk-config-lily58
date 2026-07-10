@@ -76,22 +76,6 @@
 
             label = "WIN_SWITCH_LANGUAGE";
         };
-
-        to_win: to_win {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_tap>, <&bt BT_SEL 0>, <&macro_tap>, <&to 1>;
-
-            label = "TO_WIN";
-        };
-
-        to_mac: to_mac {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_tap>, <&bt BT_SEL 1>, <&macro_tap>, <&to 2>;
-
-            label = "TO_MAC";
-        };
     };
 
     keymap {
@@ -166,11 +150,11 @@
 
         control_layer {
             bindings = <
-&none  &to_win  &to_mac  &none   &none   &none                                 &none   &none   &none   &none  &none  &bt BT_CLR
-&none  &none    &to 7    &none   &none   &none                                 &none   &none   &none   &none  &none  &bt BT_CLR_ALL
-&none  &none    &none    &none   &none   &none                                 &none   &none   &none   &none  &none  &none
-&none  &none    &none    &none   &none   &none   &out OUT_BLE    &out OUT_USB  &none   &none   &none   &none  &none  &none
-                         &trans  &trans  &trans  &trans          &trans        &trans  &trans  &trans
+&none  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4                    &none   &none   &none   &none  &none  &bt BT_CLR
+&none  &to 7         &none         &none         &none         &none                           &none   &none   &none   &none  &none  &bt BT_CLR_ALL
+&none  &none         &none         &none         &none         &none                           &none   &none   &none   &none  &none  &out OUT_BLE
+&none  &none         &none         &none         &none         &none         &to 1     &to 2   &none   &none   &none   &none  &none  &out OUT_USB
+                                   &trans        &trans        &trans        &trans    &trans  &trans  &trans  &trans
             >;
         };
 
@@ -200,12 +184,12 @@
 
         win_control_layer {
             if-layers = <3 5>;
-            then-layer = <6>;
+            then-layer = <1>;
         };
 
         mac_control_layer {
             if-layers = <4 5>;
-            then-layer = <5>;
+            then-layer = <2>;
         };
     };
 };

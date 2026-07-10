@@ -184,12 +184,12 @@
 
         win_control_layer {
             if-layers = <3 5>;
-            then-layer = <1>;
+            then-layer = <6>;
         };
 
         mac_control_layer {
             if-layers = <4 5>;
-            then-layer = <2>;
+            then-layer = <6>;
         };
     };
 };

@@ -76,6 +76,20 @@
 
             label = "WIN_SWITCH_LANGUAGE";
         };
+
+        mac_switch_language: mac_switch_language {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_press>,
+                <&kp LEFT_COMMAND>,
+                <&macro_tap>,
+                <&kp SPACE>,
+                <&macro_release>,
+                <&kp LEFT_COMMAND>;
+
+            label = "MAC_SWITCH_LANGUAGE";
+        };
     };
 
     keymap {
@@ -103,11 +117,11 @@
 
         mac_layer {
             bindings = <
-&trans     &trans        &trans           &trans             &trans               &trans                    &trans  &trans                &trans              &trans            &trans                   &trans
-&trans     &trans        &trans           &trans             &trans               &trans                    &trans  &trans                &trans              &trans            &trans                   &trans
-&trans     &hrm LCTRL A  &hrm LEFT_ALT S  &hrm LEFT_SHIFT D  &hrm LEFT_COMMAND F  &trans                    &trans  &hrm RIGHT_COMMAND J  &hrm RIGHT_SHIFT K  &hrm RIGHT_ALT L  &hrm RIGHT_CONTROL SEMI  &trans
-&kp GLOBE  &trans        &trans           &trans             &trans               &trans  &trans    &trans  &trans  &trans                &trans              &trans            &trans                   &trans
-                                          &trans             &trans               &mo 4   &trans    &trans  &mo 5   &trans                &trans
+&trans                &trans        &trans           &trans             &trans               &trans                    &trans  &trans                &trans              &trans            &trans                   &trans
+&trans                &trans        &trans           &trans             &trans               &trans                    &trans  &trans                &trans              &trans            &trans                   &trans
+&trans                &hrm LCTRL A  &hrm LEFT_ALT S  &hrm LEFT_SHIFT D  &hrm LEFT_COMMAND F  &trans                    &trans  &hrm RIGHT_COMMAND J  &hrm RIGHT_SHIFT K  &hrm RIGHT_ALT L  &hrm RIGHT_CONTROL SEMI  &trans
+&mac_switch_language  &trans        &trans           &trans             &trans               &trans  &trans    &trans  &trans  &trans                &trans              &trans            &trans                   &trans
+                                                     &trans             &trans               &mo 4   &trans    &trans  &mo 5   &trans                &trans
             >;
         };
 

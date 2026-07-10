@@ -76,29 +76,58 @@
 
             label = "WIN_SWITCH_LANGUAGE";
         };
+
+        to_win: to_win {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap>, <&bt BT_SEL 0>, <&macro_tap>, <&to 1>;
+
+            label = "TO_WIN";
+        };
+
+        to_mac: to_mac {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap>, <&bt BT_SEL 1>, <&macro_tap>, <&to 2>;
+
+            label = "TO_MAC";
+        };
     };
 
     keymap {
         compatible = "zmk,keymap";
 
-        default_layer {
-            // ------------------------------------------------------------------------------------------------------------
-            // |  ESC  |  1  |  2  |  3   |  4   |  5   |                   |  6   |  7    |  8    |  9   |   0   |   `   |
-            // |  TAB  |  Q  |  W  |  E   |  R   |  T   |                   |  Y   |  U    |  I    |  O   |   P   |   -   |
-            // |  CTRL |  A  |  S  |  D   |  F   |  G   |                   |  H   |  J    |  K    |  L   |   ;   |   '   |
-            // | SHIFT |  Z  |  X  |  C   |  V   |  B   |   "["  |  |  "]"  |  N   |  M    |  ,    |  .   |   /   | SHIFT |
-            //                     | ALT  | GUI  | LOWER|  SPACE |  | ENTER | RAISE| BSPC  | GUI   |
-
+        base_layer {
             bindings = <
-&kp ESC               &kp N1           &kp N2           &kp N3             &kp N4               &kp N5                                 &kp N6  &kp N7                &kp N8              &kp N9            &kp N0               &kp EQUAL
-&kp TAB               &kp Q            &kp W            &kp E              &kp R                &e_yo_modmorph                         &kp Y   &kp U                 &kp I               &kp O             &kp P                &kp MINUS
-&kp LEFT_SHIFT        &hrm LEFT_GUI A  &hrm LEFT_ALT S  &hrm LEFT_SHIFT D  &hrm LEFT_CONTROL F  &kp G                                  &kp H   &hrm RIGHT_CONTROL J  &hrm RIGHT_SHIFT K  &hrm RIGHT_ALT L  &hrm RIGHT_GUI SEMI  &kp SQT
-&win_switch_language  &kp Z            &kp X            &kp C              &kp V                &kp B           &kp LBKT     &kp RBKT  &kp N   &kp M                 &kp COMMA           &kp DOT           &kp FSLH             &kp BACKSLASH
-                                                        &none              &kp DELETE           &mo 1           &kp SPACE    &kp RET   &mo 2   &kp BACKSPACE         &none
+&kp ESC         &kp N1  &kp N2  &kp N3  &kp N4      &kp N5                                 &kp N6  &kp N7         &kp N8     &kp N9   &kp N0    &kp EQUAL
+&kp TAB         &kp Q   &kp W   &kp E   &kp R       &e_yo_modmorph                         &kp Y   &kp U          &kp I      &kp O    &kp P     &kp MINUS
+&kp LEFT_SHIFT  &none   &none   &none   &none       &kp G                                  &kp H   &none          &none      &none    &none     &kp SQT
+&none           &kp Z   &kp X   &kp C   &kp V       &kp B           &kp LBKT     &kp RBKT  &kp N   &kp M          &kp COMMA  &kp DOT  &kp FSLH  &kp BACKSLASH
+                                &none   &kp DELETE  &none           &kp SPACE    &kp RET   &none   &kp BACKSPACE  &none
             >;
         };
 
-        lower_layer {
+        win_layer {
+            bindings = <
+&trans                &trans           &trans           &trans             &trans        &trans                    &trans  &trans                &trans              &trans            &trans               &trans
+&trans                &trans           &trans           &trans             &trans        &trans                    &trans  &trans                &trans              &trans            &trans               &trans
+&trans                &hrm LEFT_WIN A  &hrm LEFT_ALT S  &hrm LEFT_SHIFT D  &hrm LCTRL F  &trans                    &trans  &hrm RIGHT_CONTROL J  &hrm RIGHT_SHIFT K  &hrm RIGHT_ALT L  &hrm RIGHT_WIN SEMI  &trans
+&win_switch_language  &trans           &trans           &trans             &trans        &trans  &trans    &trans  &trans  &trans                &trans              &trans            &trans               &trans
+                                                        &trans             &trans        &mo 3   &trans    &trans  &mo 5   &trans                &trans
+            >;
+        };
+
+        mac_layer {
+            bindings = <
+&trans     &trans        &trans           &trans             &trans               &trans                    &trans  &trans                &trans              &trans            &trans                   &trans
+&trans     &trans        &trans           &trans             &trans               &trans                    &trans  &trans                &trans              &trans            &trans                   &trans
+&trans     &hrm LCTRL A  &hrm LEFT_ALT S  &hrm LEFT_SHIFT D  &hrm LEFT_COMMAND F  &trans                    &trans  &hrm RIGHT_COMMAND J  &hrm RIGHT_SHIFT K  &hrm RIGHT_ALT L  &hrm RIGHT_CONTROL SEMI  &trans
+&kp GLOBE  &trans        &trans           &trans             &trans               &trans  &trans    &trans  &trans  &trans                &trans              &trans            &trans                   &trans
+                                          &trans             &trans               &mo 4   &trans    &trans  &mo 5   &trans                &trans
+            >;
+        };
+
+        win_lower_layer {
             // ------------------------------------------------------------------------------------------------------------
             // |       |     |     |      |      |      |                   |      |       |       |      |       |       |
             // |   `   |  1  |  2  |  3   |  4   |  5   |                   |  6   |   7   |   8   |  9   |   0   |       |
@@ -107,11 +136,21 @@
             //                     |      |      |      |        |  |       |      |       |       |
 
             bindings = <
-&kp F1       &kp F2              &kp F3          &kp F4        &kp F5               &kp F6                           &kp F7  &kp F8                         &kp F9                       &kp F10                    &kp F11                    &kp F12
-&kp LS(TAB)  &kp LC(LEFT_ARROW)  &kp HOME        &kp END       &kp LC(RIGHT_ARROW)  &kp PAGE_UP                      &none   &kp KP_NUMBER_7                &kp KP_NUMBER_8              &kp KP_NUMBER_9            &kp KP_DIVIDE              &kp KP_ASTERISK
-&caps_word   &kp LEFT_ARROW      &kp DOWN_ARROW  &kp UP_ARROW  &kp RIGHT_ARROW      &kp PAGE_DOWN                    &none   &hrm LEFT_CONTROL KP_NUMBER_4  &hrm LEFT_SHIFT KP_NUMBER_5  &hrm LEFT_ALT KP_NUMBER_6  &hrm LEFT_GUI KP_SUBTRACT  &kp KP_PLUS
-&trans       &kp LC(Z)           &kp LC(X)       &kp LC(C)     &kp LC(V)            &kp LC(B)      &none     &none   &none   &kp KP_NUMBER_1                &kp KP_NUMBER_2              &kp KP_NUMBER_3            &none                      &kp KP_DOT
-                                                 &trans        &trans               &trans         &trans    &trans  &trans  &kp LC(BACKSPACE)              &kp KP_NUMBER_0
+&kp F1       &kp F2              &kp F3          &kp F4        &kp F5               &kp F6                           &kp F7  &kp F8           &kp F9                       &kp F10          &kp F11          &kp F12
+&kp LS(TAB)  &kp LC(LEFT_ARROW)  &kp HOME        &kp END       &kp LC(RIGHT_ARROW)  &kp PAGE_UP                      &none   &kp KP_NUMBER_7  &kp KP_NUMBER_8              &kp KP_NUMBER_9  &kp KP_DIVIDE    &kp KP_ASTERISK
+&trans       &kp LEFT_ARROW      &kp DOWN_ARROW  &kp UP_ARROW  &kp RIGHT_ARROW      &kp PAGE_DOWN                    &none   &kp KP_NUMBER_4  &hrm LEFT_SHIFT KP_NUMBER_5  &kp KP_NUMBER_6  &kp KP_SUBTRACT  &kp KP_PLUS
+&trans       &kp LC(Z)           &kp LC(X)       &kp LC(C)     &kp LC(V)            &kp LC(B)      &none     &none   &none   &kp KP_NUMBER_1  &kp KP_NUMBER_2              &kp KP_NUMBER_3  &none            &kp KP_DOT
+                                                 &trans        &trans               &trans         &trans    &trans  &trans  &trans           &kp KP_NUMBER_0
+            >;
+        };
+
+        mac_lower_layer {
+            bindings = <
+&kp F1       &kp F2              &kp F3          &kp F4        &kp F5               &kp F6                           &kp F7  &kp F8           &kp F9                       &kp F10          &kp F11          &kp F12
+&kp LS(TAB)  &kp LG(LEFT_ARROW)  &kp HOME        &kp END       &kp LG(RIGHT_ARROW)  &kp PAGE_UP                      &none   &kp KP_NUMBER_7  &kp KP_NUMBER_8              &kp KP_NUMBER_9  &kp KP_DIVIDE    &kp KP_ASTERISK
+&trans       &kp LEFT_ARROW      &kp DOWN_ARROW  &kp UP_ARROW  &kp RIGHT_ARROW      &kp PAGE_DOWN                    &none   &kp KP_NUMBER_4  &hrm LEFT_SHIFT KP_NUMBER_5  &kp KP_NUMBER_6  &kp KP_SUBTRACT  &kp KP_PLUS
+&trans       &kp LG(Z)           &kp LG(X)       &kp LG(C)     &kp LG(V)            &kp LG(B)      &none     &none   &none   &kp KP_NUMBER_1  &kp KP_NUMBER_2              &kp KP_NUMBER_3  &none            &kp KP_DOT
+                                                 &trans        &trans               &trans         &trans    &trans  &trans  &trans           &kp KP_NUMBER_0
             >;
         };
 
@@ -127,11 +166,11 @@
 
         control_layer {
             bindings = <
-&none  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4                                &none   &none   &none   &none  &none  &bt BT_CLR
-&none  &none         &to 4         &none         &none         &none                                       &none   &none   &none   &none  &none  &bt BT_CLR_ALL
-&none  &none         &none         &none         &none         &none                                       &none   &none   &none   &none  &none  &none
-&none  &none         &none         &none         &none         &none         &out OUT_BLE    &out OUT_USB  &none   &none   &none   &none  &none  &none
-                                   &trans        &trans        &trans        &trans          &trans        &trans  &trans  &trans
+&none  &to_win  &to_mac  &none   &none   &none                                 &none   &none   &none   &none  &none  &bt BT_CLR
+&none  &none    &to 7    &none   &none   &none                                 &none   &none   &none   &none  &none  &bt BT_CLR_ALL
+&none  &none    &none    &none   &none   &none                                 &none   &none   &none   &none  &none  &none
+&none  &none    &none    &none   &none   &none   &out OUT_BLE    &out OUT_USB  &none   &none   &none   &none  &none  &none
+                         &trans  &trans  &trans  &trans          &trans        &trans  &trans  &trans
             >;
         };
 
@@ -141,13 +180,13 @@
 &kp TAB           &kp T         &kp Q         &kp W         &kp E         &kp R                       &none  &none  &none  &none  &none  &none
 &kp LEFT_SHIFT    &kp G         &kp A         &kp S         &kp D         &kp F                       &none  &none  &none  &none  &none  &none
 &kp LEFT_CONTROL  &kp B         &kp Z         &kp X         &kp C         &kp V   &kp ENTER    &none  &none  &none  &none  &none  &none  &none
-                                              &none         &kp LEFT_ALT  &mo 5   &kp SPACE    &none  &none  &none  &none
+                                              &none         &kp LEFT_ALT  &mo 8   &kp SPACE    &none  &none  &none  &none
             >;
         };
 
         gaming_lower_layer {
             bindings = <
-&to 0   &kp NUMBER_6  &kp N7    &kp N8        &kp N9     &kp N0                   &none  &none  &none  &none  &none  &none
+&to 1   &kp NUMBER_6  &kp N7    &kp N8        &kp N9     &kp N0                   &none  &none  &none  &none  &none  &none
 &trans  &kp Y         &kp U     &kp UP_ARROW  &kp O      &kp P                    &none  &none  &none  &none  &none  &none
 &trans  &kp H         &kp LEFT  &kp DOWN      &kp RIGHT  &kp I                    &none  &none  &none  &none  &none  &none
 &trans  &kp N         &kp M     &kp J         &kp K      &kp L   &trans    &none  &none  &none  &none  &none  &none  &none
@@ -159,9 +198,14 @@
     conditional_layers {
         compatible = "zmk,conditional-layers";
 
-        control_layer {
-            if-layers = <1 2>;
-            then-layer = <3>;
+        win_control_layer {
+            if-layers = <3 5>;
+            then-layer = <6>;
+        };
+
+        mac_control_layer {
+            if-layers = <4 5>;
+            then-layer = <5>;
         };
     };
 };

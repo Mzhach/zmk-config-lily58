@@ -95,23 +95,13 @@
     keymap {
         compatible = "zmk,keymap";
 
-        base_layer {
-            bindings = <
-&kp ESC         &kp N1  &kp N2  &kp N3  &kp N4      &kp N5                                 &kp N6  &kp N7         &kp N8     &kp N9   &kp N0    &kp EQUAL
-&kp TAB         &kp Q   &kp W   &kp E   &kp R       &e_yo_modmorph                         &kp Y   &kp U          &kp I      &kp O    &kp P     &kp MINUS
-&kp LEFT_SHIFT  &none   &none   &none   &none       &kp G                                  &kp H   &none          &none      &none    &none     &kp SQT
-&none           &kp Z   &kp X   &kp C   &kp V       &kp B           &kp LBKT     &kp RBKT  &kp N   &kp M          &kp COMMA  &kp DOT  &kp FSLH  &kp BACKSLASH
-                                &none   &kp DELETE  &mo 3           &kp SPACE    &kp RET   &mo 5   &kp BACKSPACE  &none
-            >;
-        };
-
         win_layer {
             bindings = <
-&trans                &trans           &trans           &trans             &trans        &trans                    &trans  &trans                &trans              &trans            &trans               &trans
-&trans                &trans           &trans           &trans             &trans        &trans                    &trans  &trans                &trans              &trans            &trans               &trans
-&trans                &hrm LEFT_WIN A  &hrm LEFT_ALT S  &hrm LEFT_SHIFT D  &hrm LCTRL F  &trans                    &trans  &hrm RIGHT_CONTROL J  &hrm RIGHT_SHIFT K  &hrm RIGHT_ALT L  &hrm RIGHT_WIN SEMI  &trans
-&win_switch_language  &trans           &trans           &trans             &trans        &trans  &trans    &trans  &trans  &trans                &trans              &trans            &trans               &trans
-                                                        &trans             &trans        &mo 3   &trans    &trans  &mo 5   &trans                &trans
+&kp ESC               &kp N1           &kp N2           &kp N3             &kp N4        &kp N5                                 &kp N6  &kp N7                &kp N8              &kp N9            &kp N0               &kp EQUAL
+&kp TAB               &kp Q            &kp W            &kp E              &kp R         &e_yo_modmorph                         &kp Y   &kp U                 &kp I               &kp O             &kp P                &kp MINUS
+&kp LEFT_SHIFT        &hrm LEFT_WIN A  &hrm LEFT_ALT S  &hrm LEFT_SHIFT D  &hrm LCTRL F  &kp G                                  &kp H   &hrm RIGHT_CONTROL J  &hrm RIGHT_SHIFT K  &hrm RIGHT_ALT L  &hrm RIGHT_GUI SEMI  &kp SQT
+&win_switch_language  &kp Z            &kp X            &kp C              &kp V         &kp B           &kp LBKT     &kp RBKT  &kp N   &kp M                 &kp COMMA           &kp DOT           &kp FSLH             &kp BACKSLASH
+                                                        &none              &kp DELETE    &mo 2           &kp SPACE    &kp RET   &mo 4   &kp BACKSPACE         &none
             >;
         };
 
@@ -121,7 +111,7 @@
 &trans                &trans        &trans           &trans             &trans               &trans                    &trans  &trans                &trans              &trans            &trans                   &trans
 &trans                &hrm LCTRL A  &hrm LEFT_ALT S  &hrm LEFT_SHIFT D  &hrm LEFT_COMMAND F  &trans                    &trans  &hrm RIGHT_COMMAND J  &hrm RIGHT_SHIFT K  &hrm RIGHT_ALT L  &hrm RIGHT_CONTROL SEMI  &trans
 &mac_switch_language  &trans        &trans           &trans             &trans               &trans  &trans    &trans  &trans  &trans                &trans              &trans            &trans                   &trans
-                                                     &trans             &trans               &mo 4   &trans    &trans  &mo 5   &trans                &trans
+                                                     &trans             &trans               &mo 3   &trans    &trans  &mo 4   &trans                &trans
             >;
         };
 
@@ -135,8 +125,8 @@
 
             bindings = <
 &kp F1       &kp F2              &kp F3          &kp F4        &kp F5               &kp F6                           &kp F7  &kp F8           &kp F9                       &kp F10          &kp F11          &kp F12
-&kp LS(TAB)  &kp LC(LEFT_ARROW)  &kp HOME        &kp END       &kp LC(RIGHT_ARROW)  &kp PAGE_UP                      &none   &kp KP_NUMBER_7  &kp KP_NUMBER_8              &kp KP_NUMBER_9  &kp KP_DIVIDE    &kp KP_ASTERISK
-&trans       &kp LEFT_ARROW      &kp DOWN_ARROW  &kp UP_ARROW  &kp RIGHT_ARROW      &kp PAGE_DOWN                    &none   &kp KP_NUMBER_4  &hrm LEFT_SHIFT KP_NUMBER_5  &kp KP_NUMBER_6  &kp KP_SUBTRACT  &kp KP_PLUS
+&kp LS(TAB)  &kp LC(LEFT_ARROW)  &kp HOME        &kp END       &kp LC(RIGHT_ARROW)  &kp LG(LS(S))                    &none   &kp KP_NUMBER_7  &kp KP_NUMBER_8              &kp KP_NUMBER_9  &kp KP_DIVIDE    &kp KP_ASTERISK
+&trans       &kp LEFT_ARROW      &kp DOWN_ARROW  &kp UP_ARROW  &kp RIGHT_ARROW      &none                            &none   &kp KP_NUMBER_4  &hrm LEFT_SHIFT KP_NUMBER_5  &kp KP_NUMBER_6  &kp KP_SUBTRACT  &kp KP_PLUS
 &trans       &kp LC(Z)           &kp LC(X)       &kp LC(C)     &kp LC(V)            &kp LC(B)      &none     &none   &none   &kp KP_NUMBER_1  &kp KP_NUMBER_2              &kp KP_NUMBER_3  &none            &kp KP_DOT
                                                  &trans        &trans               &trans         &trans    &trans  &trans  &trans           &kp KP_NUMBER_0
             >;
@@ -144,11 +134,11 @@
 
         mac_lower_layer {
             bindings = <
-&kp F1       &kp F2              &kp F3          &kp F4        &kp F5               &kp F6                           &kp F7  &kp F8           &kp F9                       &kp F10          &kp F11          &kp F12
-&kp LS(TAB)  &kp LG(LEFT_ARROW)  &kp HOME        &kp END       &kp LG(RIGHT_ARROW)  &kp PAGE_UP                      &none   &kp KP_NUMBER_7  &kp KP_NUMBER_8              &kp KP_NUMBER_9  &kp KP_DIVIDE    &kp KP_ASTERISK
-&trans       &kp LEFT_ARROW      &kp DOWN_ARROW  &kp UP_ARROW  &kp RIGHT_ARROW      &kp PAGE_DOWN                    &none   &kp KP_NUMBER_4  &hrm LEFT_SHIFT KP_NUMBER_5  &kp KP_NUMBER_6  &kp KP_SUBTRACT  &kp KP_PLUS
-&trans       &kp LG(Z)           &kp LG(X)       &kp LG(C)     &kp LG(V)            &kp LG(B)      &none     &none   &none   &kp KP_NUMBER_1  &kp KP_NUMBER_2              &kp KP_NUMBER_3  &none            &kp KP_DOT
-                                                 &trans        &trans               &trans         &trans    &trans  &trans  &trans           &kp KP_NUMBER_0
+&kp F1       &kp F2              &kp F3          &kp F4        &kp F5               &kp F6                                      &kp F7  &kp F8           &kp F9                       &kp F10          &kp F11          &kp F12
+&kp LS(TAB)  &kp LA(LEFT_ARROW)  &kp HOME        &kp END       &kp LA(RIGHT_ARROW)  &kp LG(LC(LS(NUMBER_4)))                    &none   &kp KP_NUMBER_7  &kp KP_NUMBER_8              &kp KP_NUMBER_9  &kp KP_DIVIDE    &kp KP_ASTERISK
+&trans       &kp LEFT_ARROW      &kp DOWN_ARROW  &kp UP_ARROW  &kp RIGHT_ARROW      &none                                       &none   &kp KP_NUMBER_4  &hrm LEFT_SHIFT KP_NUMBER_5  &kp KP_NUMBER_6  &kp KP_SUBTRACT  &kp KP_PLUS
+&trans       &kp LG(Z)           &kp LG(X)       &kp LG(C)     &kp LG(V)            &kp LG(B)                 &none     &none   &none   &kp KP_NUMBER_1  &kp KP_NUMBER_2              &kp KP_NUMBER_3  &none            &kp KP_DOT
+                                                 &trans        &trans               &trans                    &trans    &trans  &trans  &trans           &kp KP_NUMBER_0
             >;
         };
 
@@ -165,9 +155,9 @@
         control_layer {
             bindings = <
 &none  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4                    &none   &none   &none   &none  &none  &bt BT_CLR
-&none  &to 7         &none         &none         &none         &none                           &none   &none   &none   &none  &none  &bt BT_CLR_ALL
+&none  &to 6         &none         &none         &none         &none                           &none   &none   &none   &none  &none  &bt BT_CLR_ALL
 &none  &none         &none         &none         &none         &none                           &none   &none   &none   &none  &none  &out OUT_BLE
-&none  &none         &none         &none         &none         &none         &to 1     &to 2   &none   &none   &none   &none  &none  &out OUT_USB
+&none  &none         &none         &none         &none         &none         &to 0     &to 1   &none   &none   &none   &none  &none  &out OUT_USB
                                    &trans        &trans        &trans        &trans    &trans  &trans  &trans  &trans
             >;
         };
@@ -178,13 +168,13 @@
 &kp TAB           &kp T         &kp Q         &kp W         &kp E         &kp R                       &none  &none  &none  &none  &none  &none
 &kp LEFT_SHIFT    &kp G         &kp A         &kp S         &kp D         &kp F                       &none  &none  &none  &none  &none  &none
 &kp LEFT_CONTROL  &kp B         &kp Z         &kp X         &kp C         &kp V   &kp ENTER    &none  &none  &none  &none  &none  &none  &none
-                                              &none         &kp LEFT_ALT  &mo 8   &kp SPACE    &none  &none  &none  &none
+                                              &none         &kp LEFT_ALT  &mo 7   &kp SPACE    &none  &none  &none  &none
             >;
         };
 
         gaming_lower_layer {
             bindings = <
-&to 1   &kp NUMBER_6  &kp N7    &kp N8        &kp N9     &kp N0                   &none  &none  &none  &none  &none  &none
+&to 0   &kp NUMBER_6  &kp N7    &kp N8        &kp N9     &kp N0                   &none  &none  &none  &none  &none  &none
 &trans  &kp Y         &kp U     &kp UP_ARROW  &kp O      &kp P                    &none  &none  &none  &none  &none  &none
 &trans  &kp H         &kp LEFT  &kp DOWN      &kp RIGHT  &kp I                    &none  &none  &none  &none  &none  &none
 &trans  &kp N         &kp M     &kp J         &kp K      &kp L   &trans    &none  &none  &none  &none  &none  &none  &none
@@ -197,13 +187,13 @@
         compatible = "zmk,conditional-layers";
 
         win_control_layer {
-            if-layers = <3 5>;
-            then-layer = <6>;
+            if-layers = <2 4>;
+            then-layer = <5>;
         };
 
         mac_control_layer {
-            if-layers = <4 5>;
-            then-layer = <6>;
+            if-layers = <3 4>;
+            then-layer = <5>;
         };
     };
 };
